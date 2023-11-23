@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aiml>
+
+  <category>
+    <pattern>*</pattern>
+    <template>
+        Sorry, I don't understand the response "<star />". Try typing "help" or introducing yourself if you haven't already.
+    </template>
+  </category>
+
+<!--Introduction block-->
+
+<category>
+    <pattern>INITIALIZE VARIABLES</pattern>
+	<template><think>
+	    <set name="client_introduced_flag">false</set>
+	    <set name="bot_introduced_flag">false</set>
+	    <set name="is_cs_student_question">false</set>
+	</think></template>
+</category>
+
+<category>
+	<pattern>HELLO</pattern>
+	<template>
+	    <condition name="client_introduced_flag">
+            <li value="true">Hello again! Did you need further CS career guidance?<srai>INITIALIZE VARIABLES</srai></li>
+            <li>Hello! Thanks for opening a discussion! May I have the pleasure of getting your name please?<srai>INITIALIZE VARIABLES</srai></li>
+        </condition>
+        <think><set name="client_introduced_flag">true</set></think>
+    </template>
+</category>
+
+<category>
+	<pattern>HELLO *</pattern>
+	<template><srai>HELLO</srai></template>
+</category>
+
+<category>
+	<pattern>GREETINGS</pattern>
+	<template><srai>HELLO</srai></template>
+</category>
+
+<category>
+	<pattern>GREETINGS *</pattern>
+	<template><srai>HELLO</srai></template>
+</category>
+
+<category>
+	<pattern>HI</pattern>
+	<template><srai>HELLO</srai></template>
+</category>
+
+<category>
+	<pattern>HI *</pattern>
+	<template><srai>HELLO</srai></template>
+</category>
+
+<category>
+	<pattern>HEY *</pattern>
+	<template><srai>HELLO</srai></template>
+</category>
+
+<category>
+	<pattern>HEY</pattern>
+	<template><srai>HELLO</srai></template>
+</category>
+
+<category>
+    <pattern>WHAT IS YOUR NAME</pattern>
+    <template>
+        <condition>
+            <li name="bot_introduced_flag" value="true">As I said, I am the CS Career Advisor chatbot "Casey". Are you a CS student who needs guidance on picking a suitable career path?</li>
+            <li>I am the CS Career Advisor chatbot "Casey". Are you a CS student who needs guidance on picking a suitable career path?</li>
+        </condition>
+        <think><set name="bot_introduced_flag">true</set></think>
+    </template>
+</category>
+
+<category>
+    <pattern>*</pattern>
+    <that>* I HAVE THE PLEASURE *</that>
+    <template>Hi <set name = "clientName"><formal><first><star /></first></formal></set>! <srai>WHAT IS YOUR NAME</srai></template>
+</category>
+
+<category>
+    <pattern>NO</pattern>
+    <that>* I HAVE THE PLEASURE *</that>
+    <template>Alright, I'll just call you <set name = "clientName">Anon</set> and we'll keep it anonymous! <srai>WHAT IS YOUR NAME</srai></template>
+</category>
+
+<category>
+    <pattern>NO *</pattern>
+    <that>* I HAVE THE PLEASURE *</that>
+    <template>Alright, I'll just call you <set name = "clientName">Anon</set> and we'll keep it anonymous! <srai>WHAT IS YOUR NAME</srai></template>
+</category>
+
+<category>
+    <pattern>* NAME IS *</pattern>
+    <template>Hi <set name = "clientName"><formal><first><star index="2"/></first></formal></set>! <srai>WHAT IS YOUR NAME</srai></template>
+</category>
+
+<category>
+    <that>* I HAVE THE PLEASURE *</that>
+    <pattern>* IT IS *</pattern>
+    <template>Hi <set name = "clientName"><formal><first><star index="2"/></first></formal></set>! <srai>WHAT IS YOUR NAME</srai></template>
+</category>
+
+<category>
+    <pattern>MY NAME IS *</pattern>
+    <template>Hi <set name = "clientName"><formal><first><star /></first></formal></set>! <srai>WHAT IS YOUR NAME</srai></template>
+</category>
+
+<category>
+    <that>* I HAVE THE PLEASURE *</that>
+    <pattern>IT IS *</pattern>
+    <template>Hi <set name = "clientName"><formal><first><star /></first></formal></set>! <srai>WHAT IS YOUR NAME</srai></template>
+</category>
+
+<!--/Introduction block-->
+
+<!--Help and first question block-->
+
+<category>
+	<pattern>HELP</pattern>
+	<template>I would be happy to help! Are you a CS student who needs guidance on picking a suitable career path?</template>
+</category>
+
+<category>
+	<pattern>HELP *</pattern>
+	<template><srai>HELP</srai></template>
+</category>
+
+<category>
+	<pattern>* HELP</pattern>
+	<template><srai>HELP</srai></template>
+</category>
+
+<category>
+    <pattern>NO</pattern>
+    <that>* suitable career path</that>
+    <template>Sorry, I am only set up to assist CS students. Please reach out to the career advisor to your corresponding major for assistance!</template>
+</category>
+
+<category>
+    <pattern>NO *</pattern>
+    <that>* suitable career path</that>
+    <template><srai>NO</srai></template>
+</category>
+
+<!--/Help and first question block-->
+
+<category>
+    <pattern>YES</pattern>
+    <template>Sorry, I don't know the context to which you are saying "yes" to.</template>
+</category>
+
+<category>
+    <pattern>YES *</pattern>
+    <template><srai>YES</srai></template>
+</category>
+
+<category>
+    <pattern>NO</pattern>
+    <template>Sorry, I don't know the context to which you are saying "no" to.</template>
+</category>
+
+<category>
+    <pattern>NO *</pattern>
+    <template><srai>NO</srai></template>
+</category>
+
+<!--Question 1-->
+
+<category>
+    <pattern>YES</pattern>
+    <that>* suitable career path</that>
+    <template>
+        Great, I am going to ask you a series of questions to best determine your suitability towards a particular CS job type.<think><set name="is_cs_student_question">true</set></think>
+        <delay></delay>
+        Do you enjoy organizing and maintaining large amounts of data and/or creating large data structures for systems and applications?
+    </template>
+</category>
+
+<category>
+    <pattern>YES *</pattern>
+    <that>* suitable career path</that>
+    <template><srai>YES</srai></template>
+</category>
+
+<!--/Question 1-->
+
+<!--Question 2-->
+
+<category>
+    <pattern>YES</pattern>
+    <that>* large amounts of data *</that>
+    <template>Do you like using statistics to find patterns in big data for solutions of abstract, situational and difficult real world problems?<think><set name="database">true</set></think></template>
+</category>
+
+<category>
+    <pattern>YES *</pattern>
+    <that>* large amounts of data *</that>
+    <template><srai>YES</srai></template>
+</category>
+
+<!--Skip Machine Learning Questions in this case-->
+<category>
+    <pattern>NO</pattern>
+    <that>* large amounts of data *</that>
+    <template>Do you enjoy programming and working with logic and mathematics to solve puzzles?<think><set name="database">false</set></think></template>
+</category>
+
+<category>
+    <pattern>NO *</pattern>
+    <that>* large amounts of data *</that>
+    <template><srai>NO</srai></template>
+</category>
+
+<!--/Question 2-->
+
+<!--Question 3-->
+
+<category>
+    <pattern>YES</pattern>
+    <that>* using statistics to *</that>
+    <template>Do you enjoy programming and working with logic and mathematics to solve puzzles?<think><set name="statistics">true</set></think></template>
+</category>
+
+<category>
+    <pattern>YES *</pattern>
+    <that>* using statistics to *</that>
+    <template><srai>YES</srai></template>
+</category>
+
+<category>
+    <pattern>NO</pattern>
+    <that>* using statistics to *</that>
+    <template>
+        <condition name="database">
+            <li value="true">You might enjoy a career in the field of Database Management! <link><text>What is a Database Administrator?</text><url>https://www.indeed.com/career-advice/finding-a-job/what-is-a-database-administrator</url></link></li>
+            <li>Do you enjoy programming and working with logic and mathematics to solve puzzles?<think><set name="statistics">false</set></think></li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>NO *</pattern>
+    <that>Do you enjoy programming *</that>
+    <template><srai>NO</srai></template>
+</category>
+
+<!--/Question 3-->
+
+<!--Question 4-->
+
+<category>
+    <pattern>YES</pattern>
+    <that>* enjoy programming *</that>
+    <template>Would you rather...<think><set name="problem-solving">true</set>
+    <set name="machine-learning"><get name="problem-solving"></get> <get name="statistics"></get></set></think><split/>
+        Continuously learn about broad variety of technologies covering general aspects, concepts and higher level overview?<split/>
+        Continuously learn deep into a very complex, niche and more specialized field?
+        <button>
+            <text>General</text>
+            <postback>GENERAL</postback>
+        </button>
+        <button>
+            <text>Specialized</text>
+            <postback>SPECIALIZED</postback>
+        </button>
+    </template>
+</category>
+
+<category>
+    <pattern>YES *</pattern>
+    <that>* enjoy programming *</that>
+    <template><srai>YES</srai></template>
+</category>
+
+<category>
+    <pattern>NO</pattern>
+    <that>* enjoy programming *</that>
+    <template>Would you rather...<think><set name="problem-solving">false</set></think><split/>
+        Continuously learn about broad variety of technologies covering general aspects, concepts and higher level overview?<split/>
+        Continuously learn deep into a very complex, niche and more specialized field?
+        <button>
+            <text>General</text>
+            <postback>GENERAL</postback>
+        </button>
+        <button>
+            <text>Specialized</text>
+            <postback>SPECIALIZED</postback>
+        </button>
+    </template>
+</category>
+
+<category>
+    <pattern>NO *</pattern>
+    <that>* enjoy programming *</that>
+    <template><srai>NO</srai></template>
+</category>
+
+<!--/Question 4-->
+
+<!--Question 5-->
+
+<category>
+    <pattern>GENERAL</pattern>
+    <template><think><set name="general-knowledge">true</set></think>
+        Would you rather help others through technical problems, set up hardware, install and configure programs, troubleshooting user issues?<split/>
+        Or would you rather test and debug code you or an colleague developed?
+        <button>
+            <text>Troubleshoot</text>
+            <postback>TROUBLESHOOT</postback>
+        </button>
+        <button>
+            <text>Debug</text>
+            <postback>DEBUG</postback>
+        </button>
+    </template>
+</category>
+
+<category>
+    <pattern>SPECIALIZED</pattern>
+    <template><think><set name="specialized-knowledge">true</set></think>
+        <condition name="machine-learning">
+            <li value="true true">
+                You might enjoy a career in the field of Machine Learning! <link><text>What is a Machine Learning Engineer?</text><url>https://www.coursera.org/articles/what-is-machine-learning-engineer</url></link>
+            </li>
+            <li>
+                Would you rather help others through technical problems, set up hardware, install and configure programs, troubleshooting user issues?<think><set name="IT">false</set></think><split/>
+                Or would you rather test and debug code you or an colleague developed?
+                <button>
+                    <text>Troubleshoot</text>
+                    <postback>TROUBLESHOOT</postback>
+                </button>
+                <button>
+                    <text>Debug</text>
+                    <postback>DEBUG</postback>
+                </button>
+            </li>
+        </condition>
+    </template>
+</category>
+
+<!--/Question 5-->
+
+<!--Question 6-->
+
+<category>
+    <pattern>TROUBLESHOOT</pattern>
+    <template><think><set name="IT"><get name="general-knowledge"></get> <get name="problem-solving"></get></set></think>
+        <condition name="IT">
+            <li value="true true">You might enjoy a career in the field of IT! <link><text>What is an IT Technician?</text><url>https://www.indeed.com/career-advice/finding-a-job/what-is-an-it-technician</url></link></li>
+            <li>Do you enjoy implementing the visual design aspect or gui for programs, applications or websites?</li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>DEBUG</pattern>
+    <template>Do you enjoy implementing the visual design aspect or gui for programs, applications or websites?</template>
+</category>
+
+<!--/Question 6-->
+
+<category>
+    <pattern>YES</pattern>
+    <that>* visual design aspect *</that>
+    <template><think><set name="software-engineer"><get name="problem-solving"></get> <get name="specialized-knowledge"></get></set></think>
+        <condition name="software-engineer">
+            <li value="true true">You might enjoy a career in the field of Software Engineering! <link><text>What does a Software Engineer do?</text><url>https://www.indeed.com/career/software-engineer</url></link></li>
+            <li>You might enjoy a career in the field of Website Development! <link><text>What is a Web Developer?</text><url>https://www.indeed.com/career-advice/finding-a-job/what-is-a-web-developer</url></link></li>
+        </condition>
+    </template>
+</category>
+
+<category>
+    <pattern>YES *</pattern>
+    <that>* visual design aspect *</that>
+    <template><srai>YES</srai></template>
+</category>
+
+<category>
+    <pattern>NO</pattern>
+    <that>* visual design aspect *</that>
+    <template>
+        Would you rather...<split />
+        Develop a local program for a target device(s) and a specific purpose?<split />
+        Or develop and maintain a system for external use via the web?
+        <button>
+            <text>Local program</text>
+            <postback>LOCAL</postback>
+        </button>
+        <button>
+            <text>Web system</text>
+            <postback>WEB</postback>
+        </button>
+    </template>
+</category>
+
+<category>
+    <pattern>NO *</pattern>
+    <that>* visual design aspect *</that>
+    <template><srai>NO</srai></template>
+</category>
+
+<category>
+    <pattern>LOCAL</pattern>
+    <that>* local program *</that>
+    <template>You might enjoy a career in the field of Software Engineering! <link><text>What does a Software Engineer do?</text><url>https://www.indeed.com/career/software-engineer</url></link></template>
+</category>
+
+<category>
+    <pattern>WEB</pattern>
+    <that>* local program *</that>
+    <template>You may be interested in a career as a Back-end Web Developer! <link><text>What is a Web Developer?</text><url>https://www.indeed.com/career-advice/finding-a-job/what-is-a-web-developer</url></link></template>
+</category>
+
+</aiml>
